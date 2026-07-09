@@ -1,23 +1,968 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- SEO: JSON-LD Structured Data for Naver/Google Search Snippet Optimization -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FinancialService",
+          "name": "개인파산신청비용 지원센터",
+          "url": "https://law.reliabledone.com",
+          "description": "전국 법원별 개인파산신청비용 평균 수임료와 송달료, 인지대 계산기 정보를 제공합니다.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "서울특별시",
+            "addressCountry": "KR"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://law.reliabledone.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "offerCount": "25",
+            "lowPrice": "1000000",
+            "highPrice": "3000000",
+            "priceCurrency": "KRW",
+            "areaServed": "대한민국"
+          }
+        }
+    </script>
+
+    <!-- Design: Clean, Modern, Soft Pastel Theme (Indigo & Soft Gray) for Legal Trust -->
+    <style>
+        :root {
+            --primary-color: #1e293b; 
+            --secondary-color: #4f46e5; 
+            --accent-color: #0f766e;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --border-color: #e2e8f0;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --highlight-color: #ea580c; 
+            --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin: 0;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        nav {
+            margin-top: 25px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        main {
+            padding: 40px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            margin-bottom: 35px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            color: var(--heading-color);
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-size: 1.35em;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        strong, b {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        /* Interactive Calculator Styling */
+        .calculator-container {
+            background-color: #f1f5f9;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            margin-top: 20px;
+        }
+
+        .calc-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .calc-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .calc-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .calc-group input, .calc-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background-color: white;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .calc-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .calc-btn:hover {
+            background-color: #4338ca;
+        }
+
+        .calc-result {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+            display: none;
+        }
+
+        .calc-result h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: var(--heading-color);
+        }
+
+        .calc-price {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--highlight-color);
+        }
+
+        form {
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: white;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background-color: #312e81;
+        }
+
+        .info-box {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95em;
+            color: #1e3a8a;
+        }
+
+        .keyword-tags {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .keyword-tags a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            background-color: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.88em;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .keyword-tags a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+
+        table th {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        table tbody td:first-child {
+            font-weight: 700;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .long-content {
+            font-size: 1.05em;
+            line-height: 1.85;
+            text-align: justify;
+        }
+
+        .long-content p {
+            margin-bottom: 20px;
+        }
+
+        .related-links {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .related-links a {
+            display: inline-block;
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .related-links a:hover {
+            background-color: #e2e8f0;
+            color: var(--secondary-color);
+        }
+
+        /* FAQ Accordion Styling */
+        .faq-dl {
+            margin-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-dl dt {
+            cursor: pointer;
+            padding: 18px;
+            font-weight: 700;
+            font-size: 1.05em;
+            background-color: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--heading-color);
+            position: relative;
+        }
+
+        .faq-dl dt::after {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            font-size: 1.3em;
+            color: #64748b;
+        }
+
+        .faq-dl dt.active::after {
+            content: "−";
+        }
+
+        .faq-dl dd {
+            padding: 18px;
+            margin: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+            font-size: 1em;
+            color: var(--text-color);
+            line-height: 1.75;
+        }
+
+        .faq-dl dt.active + dd {
+            display: block;
+        }
+
+        /* Self Diagnostic Checklist */
+        .diagnostic-container {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .diag-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .diag-item input[type="checkbox"] {
+            margin-top: 5px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .diag-item label {
+            cursor: pointer;
+            font-size: 0.98em;
+            font-weight: 500;
+        }
+
+        /* Visual Chart Style CSS */
+        .cost-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 25px 0;
+        }
+
+        .chart-bar-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chart-label {
+            width: 140px;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .chart-track {
+            flex-grow: 1;
+            background-color: #e2e8f0;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-fill {
+            background-color: var(--secondary-color);
+            height: 100%;
+            border-radius: 12px;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 0.8em;
+            font-weight: 700;
+            line-height: 24px;
+        }
+
+        .chart-fill.fill-court { width: 35%; background-color: var(--accent-color); }
+        .chart-fill.fill-trustee { width: 25%; background-color: #0d9488; }
+        .chart-fill.fill-attorney { width: 85%; background-color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.7em;
+            }
+            main {
+                padding: 15px;
+            }
+            section {
+                padding: 25px;
+            }
+            .chart-bar-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .chart-label {
+                width: 100%;
+            }
+            .chart-track {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>개인파산신청비용 법원별 비교 및 2026 자가 진단 가이드</h1>
+        <p>전국 주요 지방법원의 송달료, 인지대, 파산관재인 선임비용을 투명하게 비교합니다. 전문 변호사와 법무사의 수임료 견적부터 개인 상황에 적합한 비용 계산 방법까지 한눈에 확인해 보세요.</p>
+        <nav aria-label="메인 메뉴">
+            <ul>
+                <li><a href="#실시간비용계산">비용 실시간 계산</a></li>
+                <li><a href="#법원별평균비용">전국 법원별 비용</a></li>
+                <li><a href="#심층분석가이드">수임료 심층 분석</a></li>
+                <li><a href="#자가진단체크">파산 자격 자가진단</a></li>
+                <li><a href="#법원FAQ">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="실시간비용계산">
+            <h2>개인파산신청비용 실시간 계산기</h2>
+            <p>신청인의 채권자 수와 관할 지방법원 정보를 기반으로, 송달료, 인지대 및 예상되는 파산관재인 선임 비용을 포함한 법원 납부 실비의 예상 금액을 간편하게 산출해 드립니다. 가장 합리적인 수임료 견적을 산출하기 전에 기초 법원비용을 미리 파악할 수 있는 유용한 도구입니다.</p>
+            
+            <div class="calculator-container">
+                <div class="calc-row">
+                    <div class="calc-group">
+                        <label for="calc-creditors">1. 채권자 수 (명)</label>
+                        <input type="number" id="calc-creditors" placeholder="예: 5" min="1" max="100" value="5">
+                    </div>
+                    <div class="calc-group">
+                        <label for="calc-court">2. 관할 지방법원</label>
+                        <select id="calc-court">
+                            <option value="서울회생법원">서울회생법원</option>
+                            <option value="수원회생법원">수원회생법원</option>
+                            <option value="부산회생법원">부산회생법원</option>
+                            <option value="인천지방법원">인천지방법원</option>
+                            <option value="대구지방법원">대구지방법원</option>
+                            <option value="대전지방법원">대전지방법원</option>
+                            <option value="광주지방법원">광주지방법원</option>
+                            <option value="울산지방법원">울산지방법원</option>
+                            <option value="창원지방법원">창원지방법원</option>
+                            <option value="전주지방법원">전주지방법원</option>
+                            <option value="청주지방법원">청주지방법원</option>
+                            <option value="춘천지방법원">춘천지방법원</option>
+                            <option value="제주지방법원">제주지방법원</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-group">
+                        <label for="calc-type">3. 신청 방식 선택</label>
+                        <select id="calc-type">
+                            <option value="electronic">전자소송 (다이렉트 인터넷 신청 방식)</option>
+                            <option value="paper">종이 서류 접수 방식</option>
+                        </select>
+                    </div>
+                    <div class="calc-group">
+                        <label for="calc-representative">4. 수임 대상 구분</label>
+                        <select id="calc-representative">
+                            <option value="lawyer">법률 대리인 전문 변호사 상담</option>
+                            <option value="paralegal">일반 대리 법무사 대행</option>
+                            <option value="self">스스로 진행 (나홀로 소송)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="calc-btn" onclick="calculateBankruptcyCost()">실시간 예상 개인파산신청비용 계산하기</button>
+                
+                <div class="calc-result" id="calc-result-box">
+                    <h4>계산 결과 및 비용 구성 리포트</h4>
+                    <ul>
+                        <li>정부 납부 인지대액: <span id="res-stamp">0</span> 원</li>
+                        <li>법원 예납 송달료액: <span id="res-delivery">0</span> 원</li>
+                        <li>파산관재인 선임 예납금 (기본): <span id="res-trustee">0</span> 원</li>
+                        <li>예상 대리인 수임료 범위: <span id="res-attorney">0</span> 원</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 700; font-size: 1.1em;">총 예상 납부액 (합계 범위): <span id="res-total" class="calc-price">0 원</span></p>
+                    <p style="font-size: 0.85em; color: #64748b; margin-top: 10px;">위 산출 금액은 2026년도 기준 전국 회생법원 및 지방법원의 규정을 반영한 수치이며 신청인의 재산 규모, 채무 형성 과정, 채무액 크기에 따라 변동될 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>개인파산 신청비용 절감 팁:</strong> 최근에는 인터넷 전자소송을 활용한 다이렉트 접수 방식이 종이 서류 제출 대비 10%의 인지대 할인 혜택이 적용됩니다. 채권자 수가 많을수록 송달료 부담이 가중되므로 채권 추심 목록을 네이버나 카카오톡 앱의 신용 정보 조회를 통해 누락 없이 철저하게 정리하는 것이 낭비를 줄이는 핵심 방법입니다.
+            </div>
+            
+            <div class="keyword-tags" aria-label="추천 키워드 태그">
+                <a href="#법원별평균비용">개인파산신청비용 평균</a>
+                <a href="#실시간비용계산">개인파산신청비용 계산기</a>
+                <a href="#심층분석가이드">전국 저렴한곳 찾기</a>
+                <a href="#자가진단체크">개인파산 면책 장단점</a>
+                <a href="#법원FAQ">변호사 법무사 차이점</a>
+                <a href="#실시간비용계산">파산관재인 예납금</a>
+                <a href="#심층분석가이드">개인파산 수임료 분납</a>
+                <a href="#자가진단체크">20대 30대 청년파산</a>
+            </div>
+        </section>
+
+        <section id="법원별평균비용">
+            <h2>전국 주요 법원별 개인파산신청비용 통계</h2>
+            <p>대한민국 법원 행정처 공식 기준에 따라 개인파산 사건 접수 시 법원에 필수로 납부해야 하는 공과금 성격의 실비와 대리인 수임 비용의 통계 지표입니다. 서울, 수원, 부산에 개설된 회생법원과 전국 지방법원 본원 기준의 2026년 최신 변동 경향을 요약하였습니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>관할 구역 및 지방법원</th>
+                        <th>평균 인지대 및 송달료 (채권자 5인 기준)</th>
+                        <th>파산관재인 선임 예납금 범위</th>
+                        <th>법률대리인 평균 수임료 시세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>서울회생법원 (서울 전역)</td>
+                        <td>약 281,800 원</td>
+                        <td>300,000 원 ~ 500,000 원</td>
+                        <td>1,200,000 원 ~ 2,000,000 원</td>
+                    </tr>
+                    <tr>
+                        <td>수원회생법원 (경기 남부)</td>
+                        <td>약 281,800 원</td>
+                        <td>300,000 원 ~ 600,000 원</td>
+                        <td>1,300,000 원 ~ 2,200,000 원</td>
+                    </tr>
+                    <tr>
+                        <td>부산회생법원 (부산 울산 경남)</td>
+                        <td>약 281,800 원</td>
+                        <td>300,000 원 ~ 500,000 원</td>
+                        <td>1,100,000 원 ~ 1,900,000 원</td>
+                    </tr>
+                    <tr>
+                        <td>인천지방법원 (인천, 부천, 김포)</td>
+                        <td>약 281,800 원</td>
+                        <td>400,000 원 ~ 800,000 원</td>
+                        <td>1,200,000 원 ~ 2,100,000 원</td>
+                    </tr>
+                    <tr>
+                        <td>의정부지방법원 (경기 북부)</td>
+                        <td>약 281,800 원</td>
+                        <td>500,000 원 ~ 1,000,000 원</td>
+                        <td>1,400,000 원 ~ 2,400,000 원</td>
+                    </tr>
+                    <tr>
+                        <td>광주/대전/대구지방법원</td>
+                        <td>약 281,800 원</td>
+                        <td>300,000 원 ~ 600,000 원</td>
+                        <td>1,000,000 원 ~ 1,800,000 원</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>주의: 파산관재인 예납금은 예외적인 자산 환가 필요성이 대두되거나 신청인의 소득 파악이 극도로 난해한 사건의 경우 법원 재판부 직권 판단 하에 추가 증액 명령이 발부될 수 있습니다. 대리인 비용의 경우 진행 절차의 난이도에 따라서 가감됩니다.</p>
+
+            <h3>비용 구성 요소별 차지 비중 분석</h3>
+            <div class="cost-chart">
+                <div class="chart-bar-group">
+                    <span class="chart-label">송달료 및 인지대</span>
+                    <div class="chart-track">
+                        <div class="chart-fill fill-court">약 15%</div>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <span class="chart-label">파산관재인 예납금</span>
+                    <div class="chart-track">
+                        <div class="chart-fill fill-trustee">약 20%</div>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <span class="chart-label">변호사 대행 수임료</span>
+                    <div class="chart-track">
+                        <div class="chart-fill fill-attorney">약 65%</div>
+                    </div>
+                </div>
+            </div>
+            <p>위 시각 자료에서 보듯, 총 소요되는 개인파산신청비용 가운데 가장 높은 파이를 차지하는 영역은 대리인 선임 수임료 항목입니다. 이에 따라 무조건 제일 저렴한곳 혹은 가장 싼곳만을 수소문하기보다는, 면책 허가 결정율이 높고 신뢰할 만한 노하우를 확보하고 있는 전문 법무법인의 컨설팅 역량을 정밀하게 체크하여 비교하는 노력이 우선시됩니다.</p>
+        </section>
+
+        <section id="심층분석가이드">
+            <h2>개인파산신청비용 심층 분석 가이드 및 지역별 경향</h2>
+            <div class="long-content">
+                <p>채무 독촉과 감당하기 힘든 빚더미에서 완전히 벗어나 새로운 삶의 기틀을 다지려는 이들에게 <strong>개인파산신청비용</strong> 정보는 가입 경로보다 먼저 짚어보아야 하는 중대한 난관입니다. 특히 2026년도 상반기 통계에 따르면 경기 침체의 장기화로 인하여 20대 대학생 학자금 대출 실패, 30대 영끌 부동산 투자 실패, 40대 자영업 폐업 및 50대 부도, 60대 실버 계층의 노후 자금 소멸 등 나이대별 파산 신청률이 지속해서 오르고 있습니다. 이에 맞춰 인터넷 온라인상에는 수많은 전문 법률사무소와 대행 업체가 범람하고 있어 혼란을 야기하곤 합니다.</p>
+
+                <p>일반적으로 개인파산절차 진행 시 예상되는 총지출 금액은 법원에 납부하게 되는 필수적인 공과금과 법률 파트너에게 지불하는 자문료의 합으로 이루어집니다. 인지대는 신청서 1부당 2,000원이 부과되는데 인터넷 전자로 올리면 1,800원으로 할인 혜택을 줍니다. 핵심은 송달료입니다. 송달료는 법원의 우편 송달 요금 변동에 직접적인 타격을 받는데, 현행 기준으로 송달료 1회분 단가는 5,200원으로 정해져 있습니다. 계산 방식으로 기본 10회분에 채권자당 10회분을 가산하여 책정하므로, 채권자 수가 5인이라면 최소 30만 원 상당의 예치 송달료가 요구됩니다. 채권자 수가 15명을 초과할 시에는 송달비 자체만으로도 상당한 자금 부담을 가져오게 됩니다.</p>
+
+                <p>다음으로 고려할 비용은 파산관재인 선임 예납 명령금입니다. 파산관재인은 법원을 대신하여 파산자의 숨겨진 은닉 재산을 파악하고 소득의 유무와 면책 불허가 사유를 전문적으로 검사하는 법률 전문가입니다. 이들의 선임비는 신청인이 부담하는 법적인 성격을 띠며, 보편적으로 무직자나 고령자인 경우에는 30만 원에서 50만 원 선에서 제일 원만하게 결정됩니다. 그러나 과거에 대전이나 대구, 혹은 전주나 천안 지역에서 개인 사업체를 크게 영위하여 조사서류가 산더미처럼 많은 영업자 출신의 사건일 때는 관재 예납금이 100만 원 이상으로 껑충 오르기도 합니다. 이는 지역 내 관할 재판부의 성향에 맞춰 다르게 운용되므로 꼼꼼히 알아보아야 합니다.</p>
+
+                <p>많은 분이 가장 궁금해하시는 대리인 수임료는 변호사 혹은 법무사의 경력과 명성에 맞춰 격차가 상당하게 발발합니다. 네이버 및 구글 통합 검색이나 유튜브의 다양한 해설 채널, 에펨코리아(펨코), 디시인사이드(디시)의 회생파산 갤러리 같은 인터넷 정보 커뮤니티의 실제 내돈내산 경험담과 후기들을 들여다보면 대략 120만 원에서 250만 원 사이의 평균 가격대가 나타납니다. 간혹 브로커 사무실이나 비정상적인 전문 업체에서 제일 싼곳이라며 과도한 할인을 미끼로 수임료 50만 원 이하를 제시하는 유도 전략을 펼칠 때가 있습니다. 이 경우 신청서 제출 뒤 자녀 재산에 대한 법원의 추가 소명이나 보정 명령 시 건당 수십만 원의 별도 추가 대가를 청구하여 오히려 배보다 배꼽이 더 커지는 낭패를 겪는 일이 빈번하므로 극도의 정밀한 대조가 요구됩니다.</p>
+
+                <p>이를 방지하기 위해 반드시 법적으로 등록된 정식 법률 대리인 라이선스를 확보하고 있는지를 금융감독원 공시 자료나 대법원 사건 검색 웹사이트를 통해 면밀히 사전 체크해야 합니다. 수임 금액 조율 시 분납 제도를 지원하는 전문 센터인지 검토하는 법도 좋습니다. 개인 채무 한계에 이른 이들이 한 번에 목돈을 마련하는 것은 불가능에 가깝기에, 대부분의 정상적인 공인 변호 단체에서는 카드 할부 혜택을 주거나 수임료를 3회에서 최대 6회까지 분할해서 송금할 수 있는 맞춤형 편의 서비스를 정식으로 운영합니다.</p>
+
+                <p>지역적인 특성도 비용과 법원 판결 결과에 지대한 영향을 미칩니다. 서울회생법원은 전담 회생 법원으로 절차가 신속하고 판사들의 면책 성향이 다소 열려 있는 반면, 인천지방법원이나 의정부지방법원, 수원회생법원처럼 수도권 중에서도 난도가 높기로 소문난 행정 지역들은 서류 제출 과정이 대단히 엄정하여 추가 보정 자문비가 더 많이 발생하기도 합니다. 영남 권역의 부산, 대구, 울산, 포항, 경주, 구미, 창원, 김해, 양산 지역 또한 최근 들어 심사가 점차적으로 꼼꼼해지는 흐름이며, 충청 및 호남 권역인 청주, 충주, 아산, 군산, 익산, 여수, 순천, 목포 등도 법원 담당자 직무 범위 확대에 맞춰 서류 제출 기준이 엄밀하게 세워지고 있으므로 이에 대응할 노하우가 확실한 업체를 택해야 합니다.</p>
+
+                <p>또한 최근에는 생성형 인공지능 트렌드가 법률 상담 영역에도 침투하여, 챗지피티(ChatGPT)나 구글의 제미나이(Gemini)와 같은 스마트한 인공지능 시스템에 기본 자격 요건을 질문해 보거나 토스, 카카오톡 등 간편 금융 앱의 부채 진단 기능으로 자가 진단을 미리 체험해 보는 신청인들이 많이 늘었습니다. 하지만 복잡다단한 면책 결격 조건이나 가족들의 재산 내역 방어 전략 등 세부 법리 분석은 반드시 면허를 보유한 대리인과의 구체적이고 깊이 있는 대면 면담이나 유선 상담을 통해서만 안전하게 보완할 수 있습니다. 수년간 연체된 독촉 고통 속에서 홀로 힘겨운 고민을 이어가기보다는 공신력 있는 조력자의 컨설팅 서비스를 조속하게 도입해 볼 것을 진지하게 권고해 드립니다.</p>
+            </div>
+            
+            <div class="related-links">
+                <a href="https://recoveryoflawsm.koreahankang.com" target="_blank" rel="noopener noreferrer">개인파산 수임료 최적화 센터</a>
+                <a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%8C%8C%EC%82%B0" target="_blank" rel="noopener noreferrer">개인파산제도 가이드 (나무위키)</a>
+                <a href="https://www.scourt.go.kr" target="_blank" rel="noopener noreferrer">대한민국 대법원 법원 행정</a>
+                <a href="https://ecfs.scourt.go.kr" target="_blank" rel="noopener noreferrer">대한민국 전자소송 시스템</a>
+                <a href="https://recoveryoflawsu.koreahankang.com" target="_blank" rel="noopener noreferrer">부산개인파산 무료 상담처</a>
+            </div>
+        </section>
+
+        <section id="자가진단체크">
+            <h2>개인파산 신청 자격 및 면책 여부 자가진단</h2>
+            <p>비용 부담을 감수하고서 진행을 정식 개시하기 전에, 과연 내가 법원의 완벽한 탕감(면책) 조치를 얻어낼 수 있을지 아래 핵심 요소 체크리스트로 간단하게 자체 예비 테스트를 시행해 볼 수 있습니다. 각 항목에 맞게 본인의 상황을 되짚어보시기 바랍니다.</p>
+            
+            <div class="diagnostic-container">
+                <form action="/submit-diagnostic" method="POST" id="diagnostic-form">
+                    <div class="diag-item">
+                        <input type="checkbox" id="diag-1" name="diag" value="1">
+                        <label for="diag-1">현재 보유하고 있는 주택, 토지, 예금 등 총 자산의 평가 합산액이 보유한 빚의 합계액보다 무조건 적습니까?</label>
+                    </div>
+                    <div class="diag-item">
+                        <input type="checkbox" id="diag-2" name="diag" value="2">
+                        <label for="diag-2">현재 질병, 부상, 고령 등 불가피한 사유로 정상적이고 지속적인 최저생계비 이상의 근로 소득을 획득하기 곤란한 상태입니까?</label>
+                    </div>
+                    <div class="diag-item">
+                        <input type="checkbox" id="diag-3" name="diag" value="3">
+                        <label for="diag-3">기존에 과도한 도박, 비합리적인 사치성 낭비, 투기성 코인이나 주식 투자 활동이 주요 채무 형성의 원인은 아닙니까?</label>
+                    </div>
+                    <div class="diag-item">
+                        <input type="checkbox" id="diag-4" name="diag" value="4">
+                        <label for="diag-4">채무 원금의 합계 규모가 최소 1,000만 원 이상을 초과하고 오랜 추심 압박에 직면해 있습니까?</label>
+                    </div>
+                    <div class="diag-item">
+                        <input type="checkbox" id="diag-5" name="diag" value="5">
+                        <label for="diag-5">최근 5년 이내에 법정 관리인으로부터 개인회생이나 개인파산 면책 확정 통지를 수령해 보지 않았습니까?</label>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label for="diag-region">거주 중이신 상세 관할 행정 구역</label>
+                        <select id="diag-region" required>
+                            <option value="">현재 거주 중인 도시를 선택하세요</option>
+                            <option value="서울">서울특별시</option>
+                            <option value="부산">부산광역시</option>
+                            <option value="대구">대구광역시</option>
+                            <option value="인천">인천광역시</option>
+                            <option value="광주">광주광역시</option>
+                            <option value="대전">대전광역시</option>
+                            <option value="울산">울산광역시</option>
+                            <option value="세종">세종특별자치시</option>
+                            <option value="경기수원">수원시</option>
+                            <option value="경기성남">성남시</option>
+                            <option value="경기용인">용인시</option>
+                            <option value="경기고양">고양시</option>
+                            <option value="경기안산">안산시</option>
+                            <option value="경기남양주">남양주시</option>
+                            <option value="경기의정부">의정부시</option>
+                            <option value="강원원주">원주시</option>
+                            <option value="강원춘천">춘천시</option>
+                            <option value="충북청주">청주시</option>
+                            <option value="충남천안">천안시</option>
+                            <option value="전북전주">전주시</option>
+                            <option value="전남여수">여수시</option>
+                            <option value="경북포항">포항시</option>
+                            <option value="경남창원">창원시</option>
+                            <option value="제주특별">제주도</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" class="submit-btn" onclick="checkDiagnosticResult()">진단지 결과 제출 및 실시간 검토 피드백 받기</button>
+                </form>
+                
+                <div class="calc-result" id="diag-result-box" style="margin-top:20px; border-left-color: var(--secondary-color);">
+                    <h4 id="diag-title">자가진단 분석 보고서</h4>
+                    <p id="diag-text">귀하의 조건 검토 결과를 실시간으로 분석하여 알려 드립니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="법원FAQ">
+            <h2>개인파산신청비용 자주 묻는 질문 (FAQ)</h2>
+            <dl class="faq-dl">
+                <dt tabindex="0" aria-expanded="false">Q. 변호사와 법무사의 실무적인 대리 비용 차이점은 무엇인가요?</dt>
+                <dd>A. 변호사는 법정 내 변론과 채무자를 대신한 즉각적인 법적 이의 신청 등 재판 과정 전반의 권한을 완전 위임받아 포괄 대리합니다. 반면 법무사는 서류 작성을 도와주는 대서 형태에 가깝습니다. 가격 측면에서 법무사가 평균 20만 원에서 40만 원 정도 저렴한 편이나, 복잡한 채무 정황이나 채무 은닉 등의 혐의가 제기되어 소명해야 할 때는 변호사 컨설팅을 택하는 것이 중장기적으로 더욱 우수한 선택이 될 수 있습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 파산 제도의 최대 장점과 단점은 무엇인지 궁금합니다.</dt>
+                <dd>A. 장점으로는 법원의 면책 허가 결정을 획득하는 즉시 채무 원금과 이자가 100% 탕감된다는 것입니다. 또한 신용불량 정보가 깔끔하게 해제되며 채권추심 업체의 무차별적 추심 행동도 모두 불법화되어 정지됩니다. 단점으로는 일정 기간 은행 대출, 신용카드 발급 등의 보편적 금융 거래에 제약이 생기고 국가 공인 자격 요건 일부나 공공기관 임직원 직위의 임용 결격사유에 해당하는 등 일정 수준의 생활상 불이익이 주어집니다. 따라서 사전에 득실을 꼼꼼히 대조해야 합니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 비용 부담을 완화해 주는 국가지원금이나 할인 제도가 실제로 있나요?</dt>
+                <dd>A. 기초생활수급자, 차상위계층, 국가유공자, 그리고 한부모가족 및 60대 이상의 독거 노령 계층의 경우 대한법률구조공단의 무료 법률 서비스를 통한 무료 지원 대상자에 포함될 가능성이 열려 있습니다. 이 경우 법원 인지대와 송달료 전부 및 파산관재인 선임 예납 실비를 국가 예산에서 부담하므로 한층 부담 없는 조건 하에 신용을 정상화하는 혜택을 챙겨갈 수 있습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 보배드림이나 펨코 등 인터넷 후기에 수임료 사기 소식이 있던데 피하는 팁은?</dt>
+                <dd>A. 가장 흔하게 당하는 사기 유형은 과도하게 가격을 후려쳐 최저가 상담이라 속이고 사건 수임 후 불필요한 행정 서류 발급 비용이나 보정 대행 수수료 명목으로 추가적인 수임료를 갈취하는 가짜 사무장 브로커들입니다. 계약 당시 부가세와 보정비용, 파산관재인 예납비가 포함된 가격 명세를 투명하게 밝히는 투명한 계약서를 서면으로 체결하는 전문 법인인지를 거듭 검증하는 것이 피해를 방지하는 최상의 방법입니다.</dd>
+            </dl>
+        </section>
+
+        <section id="정식상담요청">
+            <h2>개인파산 전문 무료 컨설팅 견적 신청란</h2>
+            <p>다수의 회생파산 면책 판결 경력을 보유한 합법적 정식 변호사와 연계하여 가장 신뢰도 높은 최선의 대처 솔루션을 무료로 받아보실 수 있는 창구입니다. 아래 정보 입력을 통해 합리적인 상환 설계 대책을 안내받으세요.</p>
+            
+            <form action="/submit-consultation" method="POST" id="consultation-form">
+                <div class="form-group">
+                    <label for="consult-name">1. 신청인 성함 및 성별</label>
+                    <input type="text" id="consult-name" placeholder="실명을 입력해 주세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="consult-tel">2. 연락처 (휴대전화 번호)</label>
+                    <input type="tel" id="consult-tel" placeholder="010-0000-0000 형태로 작성하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="consult-debt">3. 대략적인 예상 총 채무액</label>
+                    <select id="consult-debt" required>
+                        <option value="">누적 부채 한도를 선택하세요</option>
+                        <option value="1천">1,000만 원 ~ 3,000만 원 미만</option>
+                        <option value="3천">3,000만 원 ~ 5,000만 원 미만</option>
+                        <option value="5천">5,000만 원 ~ 1억 원 미만</option>
+                        <option value="1억">1억 원 ~ 5억 원 미만</option>
+                        <option value="5억">5억 원 이상 고액 자산 채무</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="consult-message">4. 추가 문의 내용 및 현재 애로사항</label>
+                    <textarea id="consult-message" rows="4" placeholder="예: 무직 상태로 남양주에 거주하는 40대 가장입니다. 법률 대행 비용 분납 가능 여부와 2026년 대법원 면책 허가 동향을 구체적으로 받아보고 싶습니다."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" aria-label="개인파산 정식 상담 접수">개인파산 맞춤 견적 및 무료 상담 예약</button>
+            </form>
+            <div class="info-box" style="margin-top:20px; font-size:0.85em; background-color: #f1f5f9; border-color: #cbd5e1; color:#475569;">
+                안내 사항: 제출해 주시는 소중한 개인 정보는 개인정보 보호법 조항에 의거하여 가장 싼곳 비용 추천 및 적절한 면책 확률 분석용으로만 안전하게 가동되며 완료 확인 후 완벽히 파기됨을 엄숙히 알려드립니다.
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // Interactive Cost Calculator Logic
+        function calculateBankruptcyCost() {
+            const creditors = parseInt(document.getElementById('calc-creditors').value) || 0;
+            const court = document.getElementById('calc-court').value;
+            const type = document.getElementById('calc-type').value;
+            const rep = document.getElementById('calc-representative').value;
+            
+            if(creditors <= 0) {
+                alert('정확한 채권자 수를 입력해 주세요.');
+                return;
+            }
+
+            // Court Stamp Fee (인지대)
+            let stampFee = (type === 'electronic') ? 1800 : 2000;
+            
+            // Delivery Fee (송달료)
+            // 2026 Standard delivery rate: 5,200 KRW
+            // Formal calculation formula: (Basic 10 rounds + (Number of Creditors * 10 rounds)) * 5,200 KRW
+            let deliveryRounds = 10 + (creditors * 10);
+            let deliveryFee = deliveryRounds * 5200;
+
+            // Bankruptcy Trustee Fee (파산관재인 예납금)
+            let trusteeFee = 300000; // Base rate
+            if(court === '의정부지방법원' || court === '인천지방법원') {
+                trusteeFee = 400000; // Historically slightly higher average 예납금
+            }
+
+            // Attorney/Paralegal Professional Fees (대리인 수임료)
+            let repFeeMin = 0;
+            let repFeeMax = 0;
+            
+            if(rep === 'lawyer') {
+                repFeeMin = 1200000 + (creditors * 50000);
+                repFeeMax = 2000000 + (creditors * 80000);
+            } else if(rep === 'paralegal') {
+                repFeeMin = 800000 + (creditors * 30000);
+                repFeeMax = 1500000 + (creditors * 60000);
+            } else {
+                repFeeMin = 0;
+                repFeeMax = 0;
+            }
+
+            // DOM Updates
+            document.getElementById('res-stamp').innerText = stampFee.toLocaleString();
+            document.getElementById('res-delivery').innerText = deliveryFee.toLocaleString();
+            document.getElementById('res-trustee').innerText = trusteeFee.toLocaleString();
+            
+            if(rep === 'self') {
+                document.getElementById('res-attorney').innerText = "0 (직접 진행 소송)";
+            } else {
+                document.getElementById('res-attorney').innerText = `${repFeeMin.toLocaleString()} ~ ${repFeeMax.toLocaleString()}`;
+            }
+
+            let totalMin = stampFee + deliveryFee + trusteeFee + repFeeMin;
+            let totalMax = stampFee + deliveryFee + trusteeFee + repFeeMax;
+
+            if(rep === 'self') {
+                document.getElementById('res-total').innerText = `${totalMin.toLocaleString()} 원`;
+            } else {
+                document.getElementById('res-total').innerText = `${totalMin.toLocaleString()} 원 ~ ${totalMax.toLocaleString()} 원`;
+            }
+
+            document.getElementById('calc-result-box').style.display = 'block';
+        }
+
+        // Diagnostic Checklist Logic
+        function checkDiagnosticResult() {
+            const checkedCount = document.querySelectorAll('input[name="diag"]:checked').length;
+            const region = document.getElementById('diag-region').value;
+            const resultBox = document.getElementById('diag-result-box');
+            const resultTitle = document.getElementById('diag-title');
+            const resultText = document.getElementById('diag-text');
+
+            if(!region) {
+                alert('거주하시는 상세 행정구역을 입력해 주세요.');
+                return;
+            }
+
+            resultBox.style.display = 'block';
+            
+            if(checkedCount >= 4) {
+                resultTitle.innerText = "분석 결과: 파산 자격 및 면책 가능성 높음 (유리)";
+                resultText.innerHTML = `선택하신 <b>${region}</b> 법원 지역을 기준으로 볼 때, 현재 자산 상태 대비 채무 규모가 중대하고 유의미한 소득 활동이 불가능하여 회생보다는 개인파산을 통한 채무 완전 탕감이 대단히 유리해 보입니다. 해당 관할 법원은 신청서 접수부터 관재인 배치 절차까지 꼼꼼하므로 신속하게 상세 컨설팅 상담을 거쳐 서류 정리를 보강할 필요가 있습니다.`;
+            } else if(checkedCount === 3) {
+                resultTitle.innerText = "분석 결과: 정밀 소명 필요 (상담 필요)";
+                resultText.innerHTML = `현재 <b>${region}</b> 지방법원의 파산 선고 가이드라인과 비교할 때 경계 지점에 머무르고 있습니다. 부채가 생기게 된 주 원인 중 투자 비중이 있는지 점검이 요구되며, 법원에 보정명령이 발부되었을 때 최저생계비 한도를 엄밀히 입증해야 최종 승인을 따낼 수 있습니다. 전문 법조인과의 상담 및 계산 피드백을 통해 보완 조치를 권합니다.`;
+            } else {
+                resultTitle.innerText = "분석 결과: 개인회생 제도 권장 대상";
+                resultText.innerHTML = `입력하신 조건상 법정 파산 자격보다는 매월 정기적 일정 소득을 마련할 여지가 있어 법원 인가를 통해 원금의 일부를 성실하게 나누어 변제하는 개인회생 절차가 훨씬 적합할 수 있습니다. 자세한 비교 요건은 전문가와 1:1 진단을 실행해 보는 것이 제일 정확합니다.`;
+            }
+        }
+
+        // FAQ Accordion Functionality
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                
+                // Close other questions
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                });
+
+                // Open/close current question
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                }
+            });
+            
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+  
